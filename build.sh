@@ -12,9 +12,9 @@ set -euo pipefail
 cd "$(dirname "$0")"
 
 ENGINE="${CONTAINER_ENGINE:-podman}"
-GOOSE_REPO="${GOOSE_REPO:-https://github.com/mamins1376/goose.git}"
+GOOSE_REPO="${GOOSE_REPO:-https://github.com/m696e/goose.git}"
 GOOSE_BRANCH="${GOOSE_BRANCH:-custom}"
-GOOSE_COMMIT="${GOOSE_COMMIT:-a5baa0071288068bda73ef715141e96c05b08a7b}"
+GOOSE_COMMIT="${GOOSE_COMMIT:-690109ef73a49715d8846fb3eaeb59dece130282}"
 GOOSE_IMAGE="${GOOSE_IMAGE:-localhost/goose-custom:${GOOSE_COMMIT:0:10}}"
 # spelled out because Cargo cannot express "defaults minus local-inference"
 GOOSE_FEATURES="${GOOSE_FEATURES:-code-mode,native-tls}"

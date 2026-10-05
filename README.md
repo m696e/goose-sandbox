@@ -10,9 +10,9 @@ in a read-only container with no access to your files.
 
 | | |
 |---|---|
-| source | `https://github.com/mamins1376/goose.git` branch `custom` |
-| commit | `a5baa0071288068bda73ef715141e96c05b08a7b` |
-| version | 1.51.0 |
+| source | `https://github.com/m696e/goose.git` branch `custom` |
+| commit | `690109ef73a49715d8846fb3eaeb59dece130282` |
+| version | 1.52.0 |
 | upstream | `https://github.com/aaif-goose/goose.git` |
 
 ## 1. Build it (you compile it, so there is nothing to take on faith)
@@ -25,14 +25,14 @@ cd goose-sandbox
 Under the hood:
 
 ```bash
-podman build -t localhost/goose-custom:a5baa00712 \
-  --build-arg GOOSE_REPO=https://github.com/mamins1376/goose.git \
-  --build-arg GOOSE_COMMIT=a5baa0071288068bda73ef715141e96c05b08a7b .
+podman build -t localhost/goose-custom:690109ef73 \
+  --build-arg GOOSE_REPO=https://github.com/m696e/goose.git \
+  --build-arg GOOSE_COMMIT=690109ef73a49715d8846fb3eaeb59dece130282 .
 ```
 
 The tag is not cosmetic: `build.sh` tags the image with the first ten
 characters of the commit, and `run.sh` plus the test harness default to
-`localhost/goose-custom:a5baa00712`. Build it under a different name and you
+`localhost/goose-custom:690109ef73`. Build it under a different name and you
 must pass `GOOSE_IMAGE=...` to both.
 
 What the build does and does not do:
@@ -117,8 +117,8 @@ provider.
 The image records its own provenance, so you can check it later:
 
 ```bash
-podman run --rm --entrypoint cat localhost/goose-custom:a5baa00712 /usr/local/share/goose-build/goose-src-commit
-podman run --rm --entrypoint cat localhost/goose-custom:a5baa00712 /usr/local/share/goose-build/goose-src-hash
+podman run --rm --entrypoint cat localhost/goose-custom:690109ef73 /usr/local/share/goose-build/goose-src-commit
+podman run --rm --entrypoint cat localhost/goose-custom:690109ef73 /usr/local/share/goose-build/goose-src-hash
 ```
 
 ### Proof you are running this fork and not plain upstream
@@ -127,27 +127,27 @@ The fork adds a second stream timeout budget, so its half of the error string
 is unique to it:
 
 ```bash
-podman run --rm --entrypoint grep localhost/goose-custom:a5baa00712 \
+podman run --rm --entrypoint grep localhost/goose-custom:690109ef73 \
   -ac stream_first_line_timeout_secs /usr/local/bin/goose
 ```
 
 A non-zero count means the binary carries the split-budget change. Upstream
-1.51.0 returns `0`.
+1.52.0 returns `0`.
 
 The fork also removes a TLS stack, which is visible the same way — these must
 all be `0`:
 
 ```bash
-podman run --rm --entrypoint grep localhost/goose-custom:a5baa00712 \
+podman run --rm --entrypoint grep localhost/goose-custom:690109ef73 \
   -ac 'aws_lc' /usr/local/bin/goose
-podman run --rm --entrypoint grep localhost/goose-custom:a5baa00712 \
+podman run --rm --entrypoint grep localhost/goose-custom:690109ef73 \
   -ac 'hyper-rustls' /usr/local/bin/goose
 ```
 
 and this must be non-zero, because OpenSSL is what the build actually uses:
 
 ```bash
-podman run --rm --entrypoint ldd localhost/goose-custom:a5baa00712 /usr/local/bin/goose
+podman run --rm --entrypoint ldd localhost/goose-custom:690109ef73 /usr/local/bin/goose
 # expect: libssl.so.3 => ... and libcrypto.so.3 => ...
 ```
 
@@ -157,7 +157,7 @@ If he would rather not spend six minutes and 15–20 GiB compiling, the built
 image transfers as a plain OCI archive and loads into either engine:
 
 ```bash
-podman save --format oci-archive -o goose-custom.tar localhost/goose-custom:a5baa00712
+podman save --format oci-archive -o goose-custom.tar localhost/goose-custom:690109ef73
 podman load -i goose-custom.tar          # or: docker load -i goose-custom.tar
 ```
 

@@ -39,9 +39,9 @@ ARG RUST_IMAGE=docker.io/library/rust:1.96.1-bookworm
 # ============================== build stage ================================
 FROM ${RUST_IMAGE} AS build
 
-ARG GOOSE_REPO=https://github.com/mamins1376/goose.git
+ARG GOOSE_REPO=https://github.com/m696e/goose.git
 ARG GOOSE_BRANCH=custom
-ARG GOOSE_COMMIT=a5baa0071288068bda73ef715141e96c05b08a7b
+ARG GOOSE_COMMIT=690109ef73a49715d8846fb3eaeb59dece130282
 ARG GOOSE_STRIP=true
 
 # goose-cli's default feature set minus everything we do not want. Cargo has no
