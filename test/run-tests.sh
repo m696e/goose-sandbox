@@ -59,7 +59,7 @@
 set -uo pipefail
 cd "$(dirname "$0")" || exit 1
 
-IMAGE="${GOOSE_IMAGE:-localhost/goose-custom:690109ef73}"
+IMAGE="${GOOSE_IMAGE:-localhost/goose-custom:14f3bf745e}"
 ENGINE="${CONTAINER_ENGINE:-podman}"
 SLOW_PORT=8201   # 3 s prefill, 1 s chunk window
 FAST_PORT=8202   # never sends anything

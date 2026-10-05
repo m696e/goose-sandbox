@@ -41,7 +41,7 @@ FROM ${RUST_IMAGE} AS build
 
 ARG GOOSE_REPO=https://github.com/m696e/goose.git
 ARG GOOSE_BRANCH=custom
-ARG GOOSE_COMMIT=690109ef73a49715d8846fb3eaeb59dece130282
+ARG GOOSE_COMMIT=14f3bf745e2561c3f0e728e7bc419ad6dc4dda3e
 ARG GOOSE_STRIP=true
 
 # goose-cli's default feature set minus everything we do not want. Cargo has no
