@@ -27,7 +27,7 @@
 set -euo pipefail
 
 ENGINE="${CONTAINER_ENGINE:-podman}"
-GOOSE_IMAGE="${GOOSE_IMAGE:-localhost/goose-custom:14f3bf745e}"
+GOOSE_IMAGE="${GOOSE_IMAGE:-localhost/goose-custom:464c6b9cfc}"
 WORKSPACE="${GOOSE_WORKSPACE:-}"
 STATE="${GOOSE_STATE:-}"
 ENV_FILE="${GOOSE_ENV_FILE:-}"
